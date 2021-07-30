@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { gql, throwServerError, useQuery } from "@apollo/client";
-import client from "../apollo-client";
+import React, {useState} from 'react'
+import {gql, useQuery} from "@apollo/client";
 import Image from 'next/image'
-import { useDebounce } from '../hooks/debounce'
+import {useDebounce} from '../hooks/debounce'
 import Loader from "react-loader-spinner";
 
+// todo: add search and pagination, remove unused code
 
 export type CharactersDTO = {
   id: string
@@ -54,15 +54,15 @@ const Characters = () => {
 
   return (
     <section className="container w-10/12 mx-auto mt-10 text-gray-300">
-      <div className="flex align-middle justify-between">
+      <div className="flex align-middle justify-between mb-8">
         <h1 className="">Characters :</h1>
         <input type="text" onChange={handleFilter} placeholder="Enter character" className="text-gray-300 bg-transparent border-b-2 border-fuchsia-600 p-2"/>
       </div>
-      <div className="grid grid-cols-4 gap-4 text-center">
+      <div className="grid grid-cols-6 gap-4 text-center">
         {data.characters.results.map(({id, name, image}: CharactersDTO) => (
           <div className="" key={id}>
-            {/* <Image src={image} width={200} height={200} alt="image" /> */}
-            <h3 className="">{name}</h3>
+              <Image src={image} width={200} height={200} alt="image" />
+              <h3 className="">{name}</h3>
           </div>
         ))}
       </div>
