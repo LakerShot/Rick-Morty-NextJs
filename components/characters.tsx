@@ -4,7 +4,7 @@ import Image from 'next/image'
 import {useDebounce} from '../hooks/debounce'
 import Loader from "react-loader-spinner";
 
-// todo: add search and pagination, remove unused code
+// todo: add search and pagination
 
 export type CharactersDTO = {
   id: string
@@ -13,7 +13,7 @@ export type CharactersDTO = {
 }
 
 const QUERY = gql`
-  query {
+  query GetAllCharacters {
     characters {
       results {
         name,
@@ -22,7 +22,7 @@ const QUERY = gql`
       }
     }
   }
-`;
+`
 
 const Characters = () => {
   const { data, loading, error } = useQuery(QUERY, {
@@ -68,7 +68,6 @@ const Characters = () => {
       </div>
     </section>
   )
-
 }
 
 export default Characters
